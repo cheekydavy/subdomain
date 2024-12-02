@@ -15,7 +15,7 @@ const findSubdomains = (domain) => {
         const commonSubdomains = [
             'www', 'mail', 'ftp', 'blog', 'test', 'dev',
             'api', 'internal', 'webmail', 'm', 'secure',
-            'portal', 'account'
+            'portal', 'account', 'forum', 'about', 'support','careers', 'wiki', 'docs', 'contact', 'partners', 'newsletter', 'news', 'knowledge', 'team', 'updates', 'resources', 'community', 'portfolio', 'gallery', 'register', 'login', 'signup', 'gov', 'data', 'reports', 'report', 'citizen', 'contact', 'help', 'events', 'projects', 'community'
         ];
 
         let promises = commonSubdomains.map((sub) => {
