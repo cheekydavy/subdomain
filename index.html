@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <h2>Subdomain Finder</h2>
+    <h2>Mbuvi Subdomain Finder</h2>
     <div id="chat-box"></div>
     <input type="text" id="domain-input" placeholder="Enter a domain (e.g., example.com)">
     <button id="submit-button">Find Subdomains</button>
@@ -33,12 +33,12 @@
             const data = await response.json();
 
             if (data.subdomains.length > 0) {
-                chatBox.innerHTML += `<div class="message bot">Bot: Found the following subdomains:</div>`;
+                chatBox.innerHTML += `<div class="message bot">Mbuvi: Found the following subdomains:</div>`;
                 data.subdomains.forEach(sub => {
                     chatBox.innerHTML += `<div class="message bot">${sub}</div>`;
                 });
             } else {
-                chatBox.innerHTML += `<div class="message bot">Bot: No subdomains found.</div>`;
+                chatBox.innerHTML += `<div class="message bot">Mbuvi: No subdomains found.</div>`;
             }
             chatBox.scrollTop = chatBox.scrollHeight;
             document.getElementById('domain-input').value = '';
