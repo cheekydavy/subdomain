@@ -1,0 +1,49 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subdomain Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>Subdomain Finder</h2>
+    <div id="chat-box"></div>
+    <input type="text" id="domain-input" placeholder="Enter a domain (e.g., example.com)">
+    <button id="submit-button">Find Subdomains</button>
+
+    <script>
+        document.getElementById('submit-button').onclick = async function () {
+            const domain = document.getElementById('domain-input').value;
+            if (!domain) {
+                alert('Please enter a domain.');
+                return;
+            }
+
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `<div class="message user">You: ${domain}</div>`;
+
+            const response = await fetch('/find_subdomains', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ domain: domain }),
+            });
+            const data = await response.json();
+
+            if (data.subdomains.length > 0) {
+                chatBox.innerHTML += `<div class="message bot">Bot: Found the following subdomains:</div>`;
+                data.subdomains.forEach(sub => {
+                    chatBox.innerHTML += `<div class="message bot">${sub}</div>`;
+                });
+            } else {
+                chatBox.innerHTML += `<div class="message bot">Bot: No subdomains found.</div>`;
+            }
+            chatBox.scrollTop = chatBox.scrollHeight;
+            document.getElementById('domain-input').value = '';
+        };
+    </script>
+
+</body>
+</html>
